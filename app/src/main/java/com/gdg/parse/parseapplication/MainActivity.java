@@ -17,6 +17,8 @@ import com.parse.ParseUser;
 import java.util.Arrays;
 import java.util.List;
 
+import domain.User;
+
 public class MainActivity extends Activity {
 
     private final String PUBLIC_PROFILE = "public_profile";
@@ -24,6 +26,7 @@ public class MainActivity extends Activity {
     private Dialog progressDialog;
     private Button mFbButton;
     private List<String> permissions;
+    private ParseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +37,9 @@ public class MainActivity extends Activity {
     }
 
     private void initParse() {
-        Log.v("", "init parse");
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        Log.v("", "init parse" + currentUser +">>>"+ParseFacebookUtils.isLinked(currentUser));
+        currentUser = ParseUser.getCurrentUser();
         if ((currentUser != null) && ParseFacebookUtils.isLinked(currentUser)) {
-            showUserDetailsActivity();
+            showUserPhoneNumberActivity();
         }
     }
 
@@ -69,17 +70,25 @@ public class MainActivity extends Activity {
                     Log.d("TAG", "Uh oh. The user cancelled the Facebook login.");
                 } else if (user.isNew()) {
                     Log.d("TAG", "User signed up and logged in through Facebook!");
-                    showUserDetailsActivity();
+                    showUserPhoneNumberActivity();
                 } else {
                     Log.d("TAG", "User logged in through Facebook!");
-                    showUserDetailsActivity();
+                    showUserPhoneNumberActivity();
                 }
             }
         });
     }
 
-    private void showUserDetailsActivity() {
-        Intent intent = new Intent(this, GetPhoneNumberActivity.class);
-        startActivity(intent);
+    private void showUserPhoneNumberActivity() {
+        String phoneNumber = currentUser.getString(User.PHONE_NUMBER);
+        if (phoneNumber != null) {
+            finish();
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+        } else {
+            finish();
+            Intent intent = new Intent(this, GetPhoneNumberActivity.class);
+            startActivity(intent);
+        }
     }
 }

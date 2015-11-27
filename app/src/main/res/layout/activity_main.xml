@@ -13,8 +13,6 @@
         android:id="@+id/facebook_login"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
         android:background="@drawable/com_parse_ui_facebook_login_button_background_selector"
         android:capitalize="none"
         android:drawableLeft="@drawable/fb_logo"
@@ -23,6 +21,8 @@
         android:paddingLeft="50dp"
         android:text="@string/facebook_login_label"
         android:textColor="@android:color/white"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
