@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">ParseApplication</string>
-
+    <string name="app_id">463696940482138</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="facebook_login_label">Login with Facebook</string>
+    <style name="com_parse_ui_facebook_login_failed_toast">Login Failed</style>
+    <string name="facebook_login">FB Login</string>
+    <string name="login_message">Logging in...</string>
 </resources>
