@@ -26,7 +26,6 @@ public class MainActivity extends Activity {
     private Dialog progressDialog;
     private Button mFbButton;
     private List<String> permissions;
-    private ParseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +36,7 @@ public class MainActivity extends Activity {
     }
 
     private void initParse() {
-        currentUser = ParseUser.getCurrentUser();
+        ParseUser currentUser = ParseUser.getCurrentUser();
         if ((currentUser != null) && ParseFacebookUtils.isLinked(currentUser)) {
             showUserPhoneNumberActivity();
         }
@@ -80,6 +79,7 @@ public class MainActivity extends Activity {
     }
 
     private void showUserPhoneNumberActivity() {
+        ParseUser currentUser = ParseUser.getCurrentUser();
         String phoneNumber = currentUser.getString(User.PHONE_NUMBER);
         if (phoneNumber != null) {
             finish();
