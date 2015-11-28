@@ -7,4 +7,5 @@
     <style name="com_parse_ui_facebook_login_failed_toast">Login Failed</style>
     <string name="facebook_login">FB Login</string>
     <string name="login_message">Logging in...</string>
+    <string name="no_location_detected">No Location detected</string>
 </resources>
